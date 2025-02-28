@@ -32,11 +32,16 @@ public class number1 {
         for (Map.Entry<Character, List<Integer>> entry : charlists.entrySet()) {
 
             List<Integer> li = new ArrayList<>();
-            li = entry.getValue();
-            int li_size = entry.getValue().size();
+            li = entry.getValue(); //[1,4,5]
+            int li_size = entry.getValue().size(); //3
 
             if (li_size >= 2) {
-                
+
+                for(int i =0; i<li_size-1;i++){
+
+                    ifSerialNum(li.get(i));
+
+                }
             }
         }
 
@@ -45,6 +50,14 @@ public class number1 {
         String answer = input_string;
         System.out.println(answer);
         return answer;
+    }
+
+
+    public static boolean ifSerialNum (int number){
+
+        
+
+        return true;
     }
 
 
