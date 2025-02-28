@@ -4,7 +4,7 @@ package programmers.모의고사1회;
 public class number1 {
 
     public static void main(String[] args) throws Exception {
-        System.out.println("Hello, asdfadf!");
+        System.out.println("Hello, asdfadf!");  
     }
 
 }
