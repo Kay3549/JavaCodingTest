@@ -43,7 +43,7 @@ public class Q2_체육대회 {
     public static int maxAbility(int [] arr){
         int max = Integer.MIN_VALUE;
         for(int i : arr){
-            if(max<i){ max = i; }
+            if(max<i){ max = i; } 
         }
         return max;
     }
