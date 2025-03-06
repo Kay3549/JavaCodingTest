@@ -1,51 +1,61 @@
 package programmers.모의고사1회;
 
-import java.util.ArrayList;
-import java.util.Collections;
-
 public class Q2_체육대회 {
 
     public static void main(String[] args) throws Exception {
 
-        int [][] arr = new int [5][3];
+        int[][] arr = {
+            {20,30},
+            {30,20},
+            {20,30}  
+        };
 
-        arr[0] = new int []{40,10,10};
-        arr[1] = new int []{20,5,0};
-        arr[2] = new int []{30,30,30};
-        arr[3] = new int []{70,0,70};
-        arr[4] = new int []{100,100,100};
-
-        solution(arr);
-
+        int maxSum = findMaxSum(arr);
+        System.out.println("Maximum Sum: " + maxSum); 
 
     }
 
+    public static int findMaxSum(int[][] arr) {
+        int rows = arr.length;
+        int cols = arr[0].length;
 
-    public static int solution(int[][] ability) {
-        ArrayList<Integer> arr = new ArrayList<>();
-        for(int i =0; i<ability.length; i++){
-            arr.add(maxAbility(ability[i]));
-        }
-        
-        Collections.sort(arr, Collections.reverseOrder());
-        int sum = 0;
-        for(int i=0; i<ability[0].length;i++){
-            sum += arr.get(i);
-        }
-
-        int answer = sum;
-        System.out.println(answer);
-        return answer;
-        
+        return backtrack(arr, new boolean[rows], new boolean[cols], cols, 0);
     }
 
-
-    public static int maxAbility(int [] arr){
-        int max = Integer.MIN_VALUE;
-        for(int i : arr){
-            if(max<i){ max = i; } 
+    private static int backtrack(int[][] arr, boolean[] usedRows, boolean[] usedCols, int count, int currentSum) {
+        // Base case: if 3 numbers are selected, return the current sum
+        if (count == 0) {
+            return currentSum;
         }
-        return max;
+
+        int maxSum = 0;
+
+        // Iterate through all rows and columns
+        for (int i = 0; i < arr.length; i++) {
+            if (usedRows[i]) continue; // Skip used rows
+            for (int j = 0; j < arr[0].length; j++) {
+                if (usedCols[j]) continue; // Skip used columns
+
+                // Mark this row and column as used
+                usedRows[i] = true;
+                usedCols[j] = true;
+
+                // Recursively explore the next selection
+                int sum = backtrack(arr, usedRows, usedCols, count - 1, currentSum + arr[i][j]);
+
+                // Update the maximum sum
+                if (sum > maxSum) {
+                    maxSum = sum;
+                }
+
+                // Backtrack: unmark this row and column
+                usedRows[i] = false;
+                usedCols[j] = false;
+            }
+        }
+
+        return maxSum;
     }
+
 
 }
