@@ -1,61 +1,47 @@
 package programmers.모의고사1회;
 
 public class Q2_체육대회 {
+    static int maxSum = 0;
 
-    public static void main(String[] args) throws Exception {
-
-        int[][] arr = {
-            {20,30},
-            {30,20},
-            {20,30}  
+    public static void main(String[] args) {
+        int[][] arr1 = {
+            {40, 10, 10},
+            {20, 5, 0},
+            {30, 30, 30},
+            {70, 0, 70},
+            {100, 100, 100}
+        };
+        int[][] arr2 = {
+            {20, 30},
+            {30, 20},
+            {20, 30}
         };
 
-        int maxSum = findMaxSum(arr);
-        System.out.println("Maximum Sum: " + maxSum); 
-
+        System.out.println("Answer 1: " + findMaxSum(arr1)); //210
+        System.out.println("Answer 2: " + findMaxSum(arr2)); // 60
     }
 
     public static int findMaxSum(int[][] arr) {
         int rows = arr.length;
-        int cols = arr[0].length;
-
-        return backtrack(arr, new boolean[rows], new boolean[cols], cols, 0);
-    }
-
-    private static int backtrack(int[][] arr, boolean[] usedRows, boolean[] usedCols, int count, int currentSum) {
-        // Base case: if 3 numbers are selected, return the current sum
-        if (count == 0) {
-            return currentSum;
-        }
-
-        int maxSum = 0;
-
-        // Iterate through all rows and columns
-        for (int i = 0; i < arr.length; i++) {
-            if (usedRows[i]) continue; // Skip used rows
-            for (int j = 0; j < arr[0].length; j++) {
-                if (usedCols[j]) continue; // Skip used columns
-
-                // Mark this row and column as used
-                usedRows[i] = true;
-                usedCols[j] = true;
-
-                // Recursively explore the next selection
-                int sum = backtrack(arr, usedRows, usedCols, count - 1, currentSum + arr[i][j]);
-
-                // Update the maximum sum
-                if (sum > maxSum) {
-                    maxSum = sum;
-                }
-
-                // Backtrack: unmark this row and column
-                usedRows[i] = false;
-                usedCols[j] = false;
-            }
-        }
-
+        boolean[] usedRows = new boolean[rows];
+        maxSum = 0;
+        dfs(arr, 0, usedRows, 0);
         return maxSum;
     }
 
+    private static void dfs(int[][] arr, int col, boolean[] usedRows, int currentSum) {
+        int cols = arr[0].length;
+        if (col == cols) {
+            maxSum = Math.max(maxSum, currentSum);
+            return;
+        }
 
+        for (int row = 0; row < arr.length; row++) {
+            if (!usedRows[row]) {
+                usedRows[row] = true;
+                dfs(arr, col + 1, usedRows, currentSum + arr[row][col]);
+                usedRows[row] = false;
+            }
+        }
+    }
 }
