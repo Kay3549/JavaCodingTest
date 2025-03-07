@@ -3,7 +3,7 @@ package programmers.모의고사1회;
 public class Q2_체육대회 {
     static int maxSum = 0;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) {//111111
         int[][] arr1 = {
             {40, 10, 10},
             {20, 5, 0},
