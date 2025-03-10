@@ -11,7 +11,10 @@ public class Q1_외톨이알파벳 {
 
     public static void main(String[] args) throws Exception {
         solution("eebbaa");
+        String a = "hello";
+        String b = "###";
 
+        System.out.println(a+b);
     }
 
     public static String solution(String input_string) {//해시 맵을 이용, 문자 별로 나타나는 인덱스 자리를 리스트로 저장한다 예) z : [0,2,4] b: [1,3]
