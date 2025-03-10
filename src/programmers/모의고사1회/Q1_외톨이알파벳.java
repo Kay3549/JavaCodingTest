@@ -10,7 +10,7 @@ import java.util.Map;
 public class Q1_외톨이알파벳 {
 
     public static void main(String[] args) throws Exception {
-        solution("zbzbz");
+        solution("eebbaa");
 
     }
 
