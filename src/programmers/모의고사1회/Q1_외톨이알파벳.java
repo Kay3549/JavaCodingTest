@@ -11,6 +11,10 @@ public class Q1_외톨이알파벳 {
 
     public static void main(String[] args) throws Exception {
         solution("eebbaa");
+        String a = "hello";
+        String b = "@@@";
+
+        System.out.println(a+b);
 
     }
 
