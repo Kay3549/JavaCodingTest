@@ -5,7 +5,7 @@ import java.text.DecimalFormat;
 public class test {
 
     public static void main(String[] args) {
-        asdf(2590);
+        asdf(8800);
     }
 
     public static int asdf(int a) {
